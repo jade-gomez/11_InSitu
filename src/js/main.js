@@ -17,12 +17,25 @@ var cube = new THREE.Mesh(geometry, material);
 cube.rotation.x = 0.5;
 cube.rotation.y = 0.5;
 scene.add(cube);
+var duck;
 renderer.render(scene, camera);
 
 function animate() {
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
-
+  if (duck) {
+    duck.rotation.y += 0.01;
+  }
   renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
+
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+
+const loader = new GLTFLoader();
+loader.load("../img/duck.glb", function (gltf) {
+  scene.add(gltf.scene);
+  duck = gltf.scene.children[0];
+});
+const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+scene.add(ambientLight);
