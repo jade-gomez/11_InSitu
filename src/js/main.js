@@ -10,5 +10,19 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(width, height);
 element.appendChild(renderer.domElement);
 renderer.render(scene, camera);
+
+var geometry = new THREE.BoxGeometry(1, 1, 1);
 var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 var cube = new THREE.Mesh(geometry, material);
+cube.rotation.x = 0.5;
+cube.rotation.y = 0.5;
+scene.add(cube);
+renderer.render(scene, camera);
+
+function animate() {
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
+
+  renderer.render(scene, camera);
+}
+renderer.setAnimationLoop(animate);
