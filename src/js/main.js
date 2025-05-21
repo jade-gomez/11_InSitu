@@ -22,44 +22,60 @@ renderer.render(scene, camera);
 var duck;
 //renderer.render(scene, camera);
 var position = { x: 0, y: -1 };
-var scale = { x: 0.01, y: 0.01, z: 0.01 };
+var scale = { x: 0.012, y: 0.012, z: 0.012 };
 var rotation = { x: 0, y: -1.85, z: 0 };
-/*element.addEventListener("click", () => {
-  gsap.to(duck.position, {
-    x: 0.1,
-    y: 0.1,
-    duration: 1.5,
-    ease: "power2.inOut",
-  });
-});*/
+
+gsap.to(position, {
+  y: "+=0.1",
+  duration: 1.5,
+
+  repeat: -1,
+
+  yoyo: true,
+
+  ease: "sine.inOut",
+});
+
 document.querySelector(".element").addEventListener("click", () => {
-  gsap.to(".fond-blanc", { opacity: 0, duration: 0.2, delay: 2 });
+  gsap.to(".fond-blanc", { opacity: 0, duration: 0.4, delay: 1.8 });
 
   var tl = gsap.timeline();
   tl.to(position, { x: 0.5, y: -1, duration: 1, ease: "power1.out" }, 0);
-  tl.to(position, { x: 1.2, y: -1.5, duration: 1, ease: "power1.out" }, 1);
+  tl.to(position, { x: 1.2, y: -1, duration: 1, ease: "power1.out" }, 1);
   tl.to(
     scale,
-    { x: 0.01, y: 0.01, z: 0.01, duration: 1, ease: "power1.out" },
+    { x: 0.012, y: 0.012, z: 0.012, duration: 1, ease: "power1.out" },
     0
   );
   tl.to(
     scale,
-    { x: 0.005, y: 0.005, z: 0.005, duration: 1, ease: "power1.out" },
+    { x: 0.0055, y: 0.0055, z: 0.0055, duration: 1, ease: "power1.out" },
     1
   );
   tl.to(
     rotation,
     {
-      y: 10.5, // Tourner 2 fois sur l'axe Y
+      y: 10.5,
 
-      duration: 1, // Durée en secondes
+      duration: 1,
 
       ease: "power1.inOut",
     },
     0
   );
+  tl.to(position, {
+    y: "+=0.1",
+
+    duration: 1.5,
+
+    repeat: -1,
+
+    yoyo: true,
+
+    ease: "sine.inOut",
+  });
 });
+
 function animate() {
   if (duck) {
     duck.position.y = position.y;
@@ -72,8 +88,6 @@ function animate() {
 
   renderer.render(scene, camera);
 }
-
-//element.addEventListener("click", animate);
 
 renderer.setAnimationLoop(animate);
 
