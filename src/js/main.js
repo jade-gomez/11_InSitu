@@ -4,11 +4,11 @@ var element = document.querySelector(".element");
 var width = element.clientWidth;
 var height = element.clientHeight;
 var scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);
+scene.background = null;
 
 var camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
 camera.position.z = 5;
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.setSize(width, height);
 element.appendChild(renderer.domElement);
 renderer.render(scene, camera);
@@ -18,15 +18,11 @@ renderer.render(scene, camera);
 //var cube = new THREE.Mesh(geometry, material);
 //cube.rotation.x = 0.5;
 //cube.rotation.y = 0.5;
-//scene.add(cube);
+//scene.add(cube)<;>
 var duck;
 //renderer.render(scene, camera);
-var position = { x: 0, y: 0 };
-var scale = { x: 0.2, y: 0.2, z: 0.2 };
-var tl = gsap.timeline();
-tl.to(position, { x: 0.7, y: 0, duration: 2 });
-tl.to(position, { x: 1.7, y: -0.5, duration: 2, ease: "circ.out" });
-//tl.to(scale, { x: 0.1, y: 0.1, z: 0.1, duration: 3, ease: "circ.out" });
+var position = { x: 0, y: 1 };
+var scale = { x: 0.01, y: 0.01, z: 0.01 };
 
 /*element.addEventListener("click", () => {
   gsap.to(duck.position, {
@@ -37,26 +33,32 @@ tl.to(position, { x: 1.7, y: -0.5, duration: 2, ease: "circ.out" });
   });
 });*/
 document.querySelector(".element").addEventListener("click", () => {
-  gsap.to(cube.scale, {
-    x: 0.1,
-    y: 0.1,
-    z: 0.1,
-    duration: 1.5,
-    ease: "power2.inOut",
-    yoyo: true,
-    repeat: 1,
-  });
+  gsap.to("h1", { opacity: 0, duration: 0.2, delay: 2 });
+
+  var tl = gsap.timeline();
+  tl.to(position, { x: 0.7, y: 0, duration: 1, ease: "power1.out" }, 0);
+  tl.to(position, { x: 1.7, y: -0.5, duration: 1, ease: "power1.out" }, 1);
+  tl.to(
+    scale,
+    { x: 0.01, y: 0.01, z: 0.01, duration: 1, ease: "power1.out" },
+    0
+  );
+  tl.to(
+    scale,
+    { x: 0.005, y: 0.005, z: 0.005, duration: 1, ease: "power1.out" },
+    1
+  );
 });
 function animate() {
   //cube.rotation.x += 0.01;
   //cube.rotation.y += 0.01;
   if (duck) {
-    duck.rotation.y += 0.01;
+    //duck.rotation.y += 0.01;
     duck.position.y = position.y;
     duck.position.x = position.x;
-    //duck.scale.y = scale.y;
-    //duck.scale.x = scale.x;
-    //duck.scale.z = scale.z;
+    duck.scale.y = scale.y;
+    duck.scale.x = scale.x;
+    duck.scale.z = scale.z;
   }
 
   renderer.render(scene, camera);
