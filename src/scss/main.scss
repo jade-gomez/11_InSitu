@@ -1,4 +1,51 @@
-@import "font";
-@import "base";
-@import "layout";
-@import "modules/element";
+@font-face {
+  font-family: "Self Modern";
+  src: url("../font/self-modern_italic_web.woff2") format("woff2"),
+    url("../font/self-modern_italic_web.woff") format("woff");
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+video {
+  display: block;
+}
+body {
+  background: #eee;
+}
+
+.screen {
+  width: 1080px;
+  height: 1920px;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+}
+
+h1 {
+  padding-top: 392px;
+  text-align: center;
+  text-align: center;
+  font-family: "Self Modern";
+  font-size: 100px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.element {
+  position: absolute;
+  inset: 0;
+}
+
+.fond-blanc {
+  position: absolute;
+  inset: 0;
+  background-color: #fff;
+}
