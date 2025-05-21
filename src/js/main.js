@@ -33,7 +33,7 @@ var rotation = { x: 0, y: -1.85, z: 0 };
   });
 });*/
 document.querySelector(".element").addEventListener("click", () => {
-  gsap.to("h1", { opacity: 0, duration: 0.2, delay: 2 });
+  gsap.to(".fond-blanc", { opacity: 0, duration: 0.2, delay: 2 });
 
   var tl = gsap.timeline();
   tl.to(position, { x: 0.5, y: -1, duration: 1, ease: "power1.out" }, 0);

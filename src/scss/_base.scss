@@ -33,3 +33,14 @@ h1 {
   font-style: italic;
   font-weight: 400;
 }
+
+.element {
+  position: absolute;
+  inset: 0;
+}
+
+.fond-blanc {
+  position: absolute;
+  inset: 0;
+  background-color: #fff;
+}
