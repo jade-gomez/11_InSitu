@@ -94,7 +94,7 @@ renderer.setAnimationLoop(animate);
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 const loader = new GLTFLoader();
-loader.load("../img/duck.glb", function (gltf) {
+loader.load("img/duck.glb", function (gltf) {
   scene.add(gltf.scene);
   duck = gltf.scene.children[0];
 });
